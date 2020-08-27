@@ -1,11 +1,38 @@
 <mat-toolbar>
+    <button *ngIf = "show_button" (click)="show_hidden();sidenav.toggle()"><i class = "fa fa-bars"></i></button>
     <div class="col-md-8 text-left">
       <h1>MusiCafe</h1> 
     </div>
-      <a mat-button class="ac" routerLink='/home' routerLinkActive="active"><span class="fa fa-lg fa-home">Home</span></a>
-      <a mat-button><span class="fa fa-lg fa-list-ul">Menu</span></a>
+      <a mat-button routerLink='/home' routerLinkActive="active"><span class="fa fa-lg fa-home">Home</span></a>
+      <a mat-button routerLink='/menu' routerLinkActive="active" [class.active] = "call_button()"><span class="fa fa-lg fa-list-ul">Menu</span></a>
       <a mat-button><span class="fa fa-lg fa-shopping-cart">Cart</span></a>
       <a mat-button><span class="fa fa-lg fa-bar-chart">Stats</span></a>
       <a mat-button><span class="fa fa-lg fa-sign-out">Logout</span></a>
 </mat-toolbar>
+
+<div class = "hidden" [hidden] = "!hide">
+</div>
+
+<div class="left-nav" [hidden] = "hide">
+  <mat-sidenav-container >
+      <mat-sidenav class="left-nav" #sidenav>
+        <mat-nav-list>
+          <a mat-list-item> Coffee </a>
+          <a mat-list-item> Cakes </a>
+          <a mat-list-item> Juice </a>
+          <a mat-list-item> Ice Cream </a>
+          <a mat-list-item> Snacks </a>
+          <a mat-list-item> Add Item </a>
+          <a mat-list-item> Edit Item </a>
+          <a mat-list-item> Delete Item </a>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
+        <div class="no-content">
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
   

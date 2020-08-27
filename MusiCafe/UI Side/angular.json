@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "MusiCafe"
+  "defaultProject": "MusiCafe",
+  "cli": {
+    "analytics": false
+  }
 }
