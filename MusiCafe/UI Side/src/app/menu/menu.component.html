@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-10">
+      <div *ngIf = "cf">
+        <div *ngFor = "let it of co_items" >
+          <img height="200px" [src]='it.item_image'>
+            <h3 >{{it.item_name | uppercase}}</h3>
+            <h3>Price:{{it.item_price}}</h3>
+        </div>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+.mat-toolbar{
+  background-color:#A16E00 ;
+  color:#fff;
+  height: 80px;
+}
+h1{
+  font-weight: bolder;
+  font-size: xx-large;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 20px;
+}
+a:hover{
+    color:white;
+}
+.ac{
+    background-color:#BA8002 !important;
+}
+::after, ::before {
+    box-sizing: border-box;
+    margin-right: 3px;
+}
+
+

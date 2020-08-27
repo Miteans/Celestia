@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-md-2">
+    <i class="fa fa-bars btn-lg" (click)="sidenav.toggle()"></i>
+    <div>
+    <mat-sidenav-container>
+        <mat-sidenav class="container1" #sidenav>
+          <mat-nav-list>
+      
+            <a mat-list-item (click) = "coffee_display();sidenav.toggle()"> Coffee </a>
+            <a mat-list-item (click)= "cake_display();sidenav.toggle()"> Cakes </a>
+            <a mat-list-item (click) = "juice_display();sidenav.toggle()"> Juice </a>
+            <a mat-list-item (click) = "icecream_display();sidenav.toggle()"> Ice Cream </a>
+            <a mat-list-item (click) = "snack_display();sidenav.toggle()"> Snacks </a>
+            <a mat-list-item> Add Item </a>
+            <a mat-list-item> Edit Item </a>
+            <a mat-list-item> Delete Item </a>
+      
+          </mat-nav-list>
+        
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <div class="content1">
+
+          </div>
+        </mat-sidenav-content>
+    
+    </mat-sidenav-container>
+    </div>
+  </div>
+  
+  <div class="col-md-10">
+    <mat-grid-list cols="2" rowHeight="200px">
+      <div *ngIf = "cf">
+        <mat-grid-tile *ngFor = "let it of co_items" >
+          <img height="200px" [src]='it.item_image'>
+          <mat-grid-tile-footer>
+            <h3 >{{it.item_name | uppercase}}</h3>
+            <h3>Price:{{it.item_price}}</h3>
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+  </div>
+</div>
+<app-footer></app-footer>
