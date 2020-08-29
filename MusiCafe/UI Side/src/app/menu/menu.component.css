@@ -1,0 +1,56 @@
+.left-nav{
+    background-color: #A47B1B;
+    height:470px !important;
+    width: 210px !important;
+  }
+
+mat-expansion-panel{
+    border:none !important;
+    box-shadow:none !important;
+    border-radius:0px !important;
+  }
+
+mat-card{
+    margin-left:50px !important;
+    margin-bottom:35px !important;
+    width:300px !important;
+  }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+.scroll{
+    margin-top:15px !important;
+    height: 440px !important;
+    overflow-y:auto !important;
+    margin-left:15px !important;
+  }
+
+img{
+    height:150px !important;
+  }
+
+a,i,mat-panel-title{
+  color:white !important;
+  }
+
+mat-panel-title{
+  font-size:18px !important;
+  margin-left:10px !important;
+  }

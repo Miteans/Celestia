@@ -11,28 +11,8 @@ export class MenuService {
   baseurl = environment.baseUrl
   constructor(public http: HttpClient) { }
 
-  get_coffee_details(): Observable<any> {
-    let url = `${this.baseurl}coffee`;
-    return this.http.get(url);
-  }
-
-  get_cake_details(): Observable<any> {
-    let url = `${this.baseurl}cake`;
-    return this.http.get(url);
-  }
-
-  get_icecream_details(): Observable<any> {
-    let url = `${this.baseurl}icecream`;
-    return this.http.get(url);
-  }
-
-  get_snack_details(): Observable<any> {
-    let url = `${this.baseurl}snack`;
-    return this.http.get(url);
-  }
-
-  get_juice_details(): Observable<any> {
-    let url = `${this.baseurl}juice`;
+  get_items_details(categoryName): Observable<any> {
+    let url = `${this.baseurl}item/${categoryName}`;
     return this.http.get(url);
   }
 }

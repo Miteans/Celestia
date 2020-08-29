@@ -11,34 +11,11 @@ h1{
   margin-left: 10px !important;
 }
 
-a,i{
-    color:white !important;
-}
-
 .active{
-    background-color:#BA8002 !important;
-    color:black !important;
+  background-color:#BA8002 !important;
+  color:black !important;
 }
 
-.left-nav, .no-content{
-  background-color: #A47B1B;
-  width:150px;
-  height:395px !important;
-}
-
-i{
-  font-size:25px !important;
-}
-
-button{
-  border:none !important;
-  outline: none !important;
-  background-color: #A16E00;
-  margin-top:5px !important;
-}
-
-.hidden{
-  background-color:white;
-  width:150px;
-  height: 395px !important;
+a{
+  color: white !important;
 }
