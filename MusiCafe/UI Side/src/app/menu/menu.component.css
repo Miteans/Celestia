@@ -1,6 +1,6 @@
 .left-nav{
     background-color: #A47B1B;
-    height:470px !important;
+    height:400px !important;
     width: 210px !important;
   }
 
@@ -14,6 +14,11 @@ mat-card{
     margin-left:50px !important;
     margin-bottom:35px !important;
     width:300px !important;
+  }
+
+  .brown-text{
+    color:purple !important;
+    font-weight:500 !important;
   }
 
 ::-webkit-scrollbar {
@@ -37,20 +42,39 @@ mat-card{
 
 .scroll{
     margin-top:15px !important;
-    height: 440px !important;
+    height: 335px !important;
     overflow-y:auto !important;
-    margin-left:15px !important;
   }
 
 img{
     height:150px !important;
   }
 
-a,i,mat-panel-title{
+a,mat-panel-title{
   color:white !important;
   }
 
 mat-panel-title{
   font-size:18px !important;
   margin-left:10px !important;
+  }
+
+  .float-right{
+    float: right !important;
+  }
+
+  .card-buttons{
+    width:50px !important;
+    margin-left:150px !important;
+    margin-top:-40px !important
+  }
+
+  .add-button{
+    width:30px !important;
+    margin-top:10px !important;
+    margin-left:10px !important;
+  }
+
+  button{
+    outline: none !important;
   }
