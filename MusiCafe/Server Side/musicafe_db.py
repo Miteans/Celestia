@@ -19,14 +19,29 @@ def get_items_info(category_name):
     
     return item
 
-def get_all_categories():
-    category = []
-    all_categories = items.aggregate([
-    {"$unwind":"$Categories"},
-    {"$project":{"category_name":"$Categories.category_name","_id":0}}
+def get_categories():
+    categories = []
+
+    category_info = items.aggregate([
+        {
+               "$unwind":"$Categories"
+        }, 
+        {
+            "$group":
+            {
+                "_id":"$_id",
+                "categories":{"$push":"$Categories.category_name"}
+            }
+        },
+        {
+            "$project":{
+                "categories":1,
+                "_id":0
+            }
+        }
     ])
 
-    for cat in all_categories:
-        category.append(cat)
-
-    return category
+    for info in category_info:
+        categories.append(info)
+    
+    return categories[0]

@@ -12,10 +12,15 @@ def get_info_of_items(categoryName):
     info = md.get_items_info(categoryName)
     return jsonify({'items':info})
 
-@app.route('item/allCategory')
+@app.route('/categories')
 def get_categories():
-    category = md.get_all_categories()
-    return jsonify({'category':category})
+    info = md.get_categories()
+    return jsonify({'categories':info})
+
+@app.route('/add-item', methods = ['POST'])
+def add_item():
+    items = request.files
+    print(items['name'])
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,8 +1,9 @@
 <div class="row">
+  <!--Left Navbar starts here-->
   <mat-expansion-panel class="left-nav" [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Menu
+        Categories
       </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-nav-list>
@@ -11,13 +12,16 @@
       <a mat-list-item role="button" (click)="pass_data('Juice')"> Juice </a>
       <a mat-list-item role="button" (click)="pass_data('Ice-cream')"> Ice Cream </a>
       <a mat-list-item role="button" (click)="pass_data('Snacks')"> Snacks </a>
-      <a mat-list-item role="button"> Add Item </a>
-      <a mat-list-item role="button" (click)="edit()"> Edit Item </a>
-      <a mat-list-item role="button"> Delete Item </a>
     </mat-nav-list>
+    <mat-form-field class="example-full-width">
+      <mat-label><i class = "fa fa-search"></i> Search</mat-label>
+      <input matInput>
+    </mat-form-field>
   </mat-expansion-panel>
+  <!--Left Navbar ends here-->
 
-  <div class="scroll col-md-9" *ngIf="this.selected_item == 'Coffee'">
+  <!--Menu starts here-->
+  <div class="scroll col-md-9" *ngIf="this.items && this.selected_item != 'add-item'">
     <div class="row">
       <mat-card class="col-md-3 example-card" role="button" *ngFor="let item of items">
         <mat-card-header>
@@ -26,96 +30,26 @@
         </mat-card-header>
         <img mat-card-image [src]='item.item_image' alt="item.item_name">
         <mat-card-content>
-          <p class="text-right"><b>Price : {{item.item_price}}/-</b></p>
+          <p class="text-left"><b>Price : {{item.item_price}}/-</b></p>
+          <div class="card-buttons">
+            <button mat-button class="text-success" (click)="pop_data('edit-item',item)"><i class="fa fa-pencil"></i>
+              Edit</button>
+            <button mat-button class="text-danger" (click) = "pop_data('delete-item',item)"><i class="fa fa-trash-o"></i> Delete</button>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
-
-  <div class="scroll col-md-9" *ngIf="this.selected_item == 'Cake'">
-    <div class="row">
-      <mat-card class="col-md-3 example-card" role="button" *ngFor="let item of items">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image [src]='item.item_image' alt="item.item_name">
-        <mat-card-content>
-          <p class="text-right"><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <!--Menu ends here-->
+  
+  <!--Spinner-->
+  <div class="offset-3" *ngIf="!items && this.selected_item">
+    <mat-spinner></mat-spinner>
   </div>
 
-  <div class="scroll col-md-9" *ngIf="this.selected_item == 'Juice'">
-    <div class="row">
-      <mat-card class="col-md-3 example-card" role="button" *ngFor="let item of items">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image [src]='item.item_image' alt="item.item_name">
-        <mat-card-content>
-          <p class="text-right"><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <div class="scroll col-md-9" *ngIf="this.selected_item == 'Snacks'">
-    <div class="row">
-      <mat-card class="col-md-3 example-card" role="button" *ngFor="let item of items">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image [src]='item.item_image' alt="item.item_name">
-        <mat-card-content>
-          <p class="text-right"><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <div class="scroll col-md-9" *ngIf="this.selected_item == 'Ice-cream'">
-    <div class="row">
-      <mat-card class="col-md-3 example-card" role="button" *ngFor="let item of items">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image [src]='item.item_image' alt="item.item_name">
-        <mat-card-content>
-          <p class="text-right"><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <div class="scroll col-md-7" *ngIf="this.selected_item == 'do_edit'">
-    <form class="example" action="action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+  <!--Add Item Button-->
+  <div class="add-button float-right">
+    <button mat-raised-button color="primary" [hidden] = "selected_item == 'add-item'" (click) = "pop_data('add-item',0)"><i class="fa fa-plus-square"></i> Add Item</button>
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div *ngIf="do_edit">
-  <div class="row">
-    <h5>works</h5>
-  </div>
-</div> -->

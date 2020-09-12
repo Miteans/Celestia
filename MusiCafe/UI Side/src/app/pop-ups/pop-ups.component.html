@@ -1,0 +1,56 @@
+<!--Add Item Section starts here-->
+<div *ngIf="this.selected_item == 'add-item'">
+    <h2 mat-dialog-title class="heading">
+        Add Item<i class="fa fa-close close" mat-dialog-close></i>
+    </h2>
+
+    <div class="row">
+        <form [formGroup]="this.add_item">
+            <div class="row">
+                <div class="form-group offset-1 col-md-5">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Item Name</mat-label>
+                        <input matInput type="text" name="name" id="name" formControlName="name">
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Item Price</mat-label>
+                        <input matInput type="text" name="price" id="name" formControlName="price">
+                    </mat-form-field>
+                </div>
+
+                <div class="offset-1 col-md-5">
+                    <mat-form-field>
+                        <mat-label>Category</mat-label>
+                        <mat-select class="inputMaterial" formControlName="category">
+                            <div *ngFor="let category of categories">
+                                <mat-option [value]="category" selected *ngIf="category == default_category">
+                                    {{category}}</mat-option>
+                                <mat-option [value]="category" *ngIf="category != default_category">{{category}}
+                                </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-5">
+                    <span style="color:red;" *ngIf="message">{{message}}</span>
+                    <input #file type="file" accept='image/*' name="image" id="image" (change)="preview(file.files)" />
+                    <img [src]="imgURL" height="200" *ngIf="imgURL">
+                </div>
+
+            </div>
+            <button (click)="onSubmit()">Submit</button>
+        </form>
+    </div>
+
+</div>
+<!--Add Item Section ends here-->
+
+<div *ngIf = "this.selected_item != 'add-item'">
+    <h2 mat-dialog-title class="heading">
+        Works<i class="fa fa-close close" mat-dialog-close></i>
+    </h2>
+</div>
