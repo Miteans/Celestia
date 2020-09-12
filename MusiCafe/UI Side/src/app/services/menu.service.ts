@@ -21,23 +21,12 @@ export class MenuService {
     return this.http.get(url);
   }
 
-  formHtppOptions(params): any {
-    const httpOptions = {
-      headers: {
-        'Access-Control-Allow-Methods': 'POST'
-      },
-      params: params,
-             };
-    return httpOptions;
-  }
-
   add_an_item(item_name,category,price,image): Observable<any>{
     let url = `${this.baseurl}add-item`;
     const formData: FormData = new FormData();
-    formData.append('name',item_name)
-    formData.append('category',category)
-    formData.append('price',price)
+    let data = {name:item_name,category:category,price:price}
+    formData.append('data',JSON.stringify(data))
     formData.append('image',image,image.name)
-    return this.http.put(url,formData,this.formHtppOptions({}))
+    return this.http.post(url,formData)
   }
 }

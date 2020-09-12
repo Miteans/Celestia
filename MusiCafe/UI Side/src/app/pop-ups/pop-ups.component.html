@@ -1,5 +1,5 @@
 <!--Add Item Section starts here-->
-<div *ngIf="this.selected_item == 'add-item'">
+<div class = "AddItem" *ngIf="this.selected_item == 'add-item'">
     <h2 mat-dialog-title class="heading">
         Add Item<i class="fa fa-close close" mat-dialog-close></i>
     </h2>
@@ -17,7 +17,7 @@
                 <div class="form-group col-md-5">
                     <mat-form-field class="example-full-width">
                         <mat-label>Item Price</mat-label>
-                        <input matInput type="text" name="price" id="name" formControlName="price">
+                        <input matInput type="text" name="price" id="price" formControlName="price">
                     </mat-form-field>
                 </div>
 
@@ -26,10 +26,8 @@
                         <mat-label>Category</mat-label>
                         <mat-select class="inputMaterial" formControlName="category">
                             <div *ngFor="let category of categories">
-                                <mat-option [value]="category" selected *ngIf="category == default_category">
+                                <mat-option [value]="category">
                                     {{category}}</mat-option>
-                                <mat-option [value]="category" *ngIf="category != default_category">{{category}}
-                                </mat-option>
                             </div>
                         </mat-select>
                     </mat-form-field>
@@ -42,12 +40,13 @@
                 </div>
 
             </div>
-            <button (click)="onSubmit()">Submit</button>
+            <button class = "submit" (click)="onSubmit()">Submit</button>
         </form>
     </div>
 
 </div>
 <!--Add Item Section ends here-->
+
 
 <div *ngIf = "this.selected_item != 'add-item'">
     <h2 mat-dialog-title class="heading">

@@ -33,13 +33,10 @@ export class PopUpsComponent implements OnInit {
 
     console.log(this.data);
     this.selected_item = this.data.comp[0];
+    this.get_data();
   }
 
-  get_data(data){
-    this.default_category = this.selected_item
-    this.selected_item = data;
-    console.log(this.default_category)
-    console.log("here")
+  get_data(){
     this.menuService.get_categories().subscribe(data=>{
       this.categories = data['categories']['categories']
       console.log(this.categories)
@@ -68,6 +65,8 @@ export class PopUpsComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.add_item)
+    console.log(this.add_item)
     this.menuService.add_an_item(this.add_item.value.name,this.add_item.value.category,
       this.add_item.value.price,this.add_item.value.image).subscribe(data=>{
         console.log("uploaded");
