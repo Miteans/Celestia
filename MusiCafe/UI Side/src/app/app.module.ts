@@ -22,6 +22,7 @@ import { MenuComponent } from './menu/menu.component';
 
 
 import { MenuService } from  './services/menu.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MenuService } from  './services/menu.service';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
+    HomeComponent,
     
   ],
   imports: [

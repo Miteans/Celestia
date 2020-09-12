@@ -11,9 +11,9 @@
       <a mat-list-item role="button" (click)="pass_data('Juice')"> Juice </a>
       <a mat-list-item role="button" (click)="pass_data('Ice-cream')"> Ice Cream </a>
       <a mat-list-item role="button" (click)="pass_data('Snacks')"> Snacks </a>
-      <a mat-list-item role="button" (click)="pass_data('add-item')"> Add Item </a>
-      <a mat-list-item role="button" (click)="pass_data('edit-item')"> Edit Item </a>
-      <a mat-list-item role="button" (click)="pass_data('delete-item')"> Delete Item </a>
+      <a mat-list-item role="button"> Add Item </a>
+      <a mat-list-item role="button" (click)="edit()"> Edit Item </a>
+      <a mat-list-item role="button"> Delete Item </a>
     </mat-nav-list>
   </mat-expansion-panel>
 
@@ -91,4 +91,31 @@
       </mat-card>
     </div>
   </div>
+
+  <div class="scroll col-md-7" *ngIf="this.selected_item == 'do_edit'">
+    <form class="example" action="action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div *ngIf="do_edit">
+  <div class="row">
+    <h5>works</h5>
+  </div>
+</div> -->

@@ -23,6 +23,11 @@ export class MenuComponent implements OnInit {
       this.items = data['items'][0]['Categories']['items']
     })
   }
+
+  edit() {
+    this.selected_item = "do_edit";
+    console.log("rjk");
+  }
 }
 
   

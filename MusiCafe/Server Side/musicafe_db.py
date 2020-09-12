@@ -18,3 +18,15 @@ def get_items_info(category_name):
         item.append(info)
     
     return item
+
+def get_all_categories():
+    category = []
+    all_categories = items.aggregate([
+    {"$unwind":"$Categories"},
+    {"$project":{"category_name":"$Categories.category_name","_id":0}}
+    ])
+
+    for cat in all_categories:
+        category.append(cat)
+
+    return category
