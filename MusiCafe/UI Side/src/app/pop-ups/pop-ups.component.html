@@ -26,8 +26,8 @@
                         <mat-label>Category</mat-label>
                         <mat-select class="inputMaterial" formControlName="category">
                             <div *ngFor="let category of categories">
-                                <mat-option [value]="category">
-                                    {{category}}</mat-option>
+                                <mat-option [value]="category.category_name">
+                                    {{category.category_name}}</mat-option>
                             </div>
                         </mat-select>
                     </mat-form-field>
@@ -40,7 +40,7 @@
                 </div>
 
             </div>
-            <button class = "submit" (click)="onSubmit()">Submit</button>
+            <button class = "submit" (click)="onSubmit()" mat-dialog-close>Submit</button>
         </form>
     </div>
 

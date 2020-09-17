@@ -28,7 +28,7 @@
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image [src]='item.item_image' alt="item.item_name">
+        <img mat-card-image src = "http://localhost:5000/images/{{item.item_image}}" alt="item.item_name">
         <mat-card-content>
           <p class="text-left"><b>Price : {{item.item_price}}/-</b></p>
           <div class="card-buttons">
