@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,23 +20,14 @@ export class MenuService {
     return this.http.get(url);
   }
 
-  formHtppOptions(params): any {
-    const httpOptions = {
-      headers: {
-        'Access-Control-Allow-Methods': 'POST'
-      },
-      params: params,
-             };
-    return httpOptions;
-  }
-
-  add_an_item(item_name,category,price,image): Observable<any>{
+  add_an_item(item_name,categoryId,price,image,categoryName): Observable<any>{
     let url = `${this.baseurl}add-item`;
     const formData: FormData = new FormData();
-    formData.append('name',item_name)
-    formData.append('category',category)
-    formData.append('price',price)
+    formData.append('name',JSON.stringify(item_name));
+    formData.append('category_id',JSON.stringify(categoryId));
+    formData.append('category_name',JSON.stringify(categoryName))
+    formData.append('price',JSON.stringify(price));
     formData.append('image',image,image.name)
-    return this.http.put(url,formData,this.formHtppOptions({}))
+    return this.http.post(url,formData)
   }
 }

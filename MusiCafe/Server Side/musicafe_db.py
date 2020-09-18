@@ -30,7 +30,7 @@ def get_categories():
             "$group":
             {
                 "_id":"$_id",
-                "categories":{"$push":"$Categories.category_name"}
+                "categories":{"$push":{"category_name":"$Categories.category_name","category_id":"$Categories.category_id"}},
             }
         },
         {
@@ -45,3 +45,22 @@ def get_categories():
         categories.append(info)
     
     return categories[0]
+
+def add_item(item_name,category_id,price,path):
+    item_id = item_name[0] + item_name[-1]
+    print(item_id)
+    success = items.update(
+        {
+            "Categories.category_id":str(category_id)
+        },
+        {
+            "$addToSet":{"Categories.$.items":{"item_id":item_id,"item_name":item_name,
+            "item_price":int(price),"item_image":path}}
+        }
+    )
+
+    isAdded = []
+    for record in success:
+        isAdded.append(record)
+    
+    return isAdded[0]
