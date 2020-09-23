@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'menu',
     component:MenuComponent
+  },
+  {
+    path:'cart',
+    component:CartComponent
   }
 ];
 
