@@ -16,6 +16,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog'
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { MenuComponent } from './menu/menu.component';
 
 import { MenuService } from  './services/menu.service';
 import { PopUpsComponent } from './pop-ups/pop-ups.component';
+import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -38,6 +41,7 @@ import { HomeComponent } from './home/home.component';
     MenuComponent,
     HomeComponent,
     PopUpsComponent,
+    CartComponent,
     
   ],
   imports: [
@@ -57,7 +61,9 @@ import { HomeComponent } from './home/home.component';
     MatSelectModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    MatTableModule
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]

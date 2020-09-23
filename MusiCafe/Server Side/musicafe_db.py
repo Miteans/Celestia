@@ -63,4 +63,4 @@ def add_item(item_name,category_id,price,path):
     for record in success:
         isAdded.append(record)
     
-    return isAdded[0]
+    return isAdded
