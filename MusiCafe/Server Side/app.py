@@ -20,7 +20,7 @@ def get_categories():
     info = md.get_categories()
     return jsonify({'categories':info})
 
-app.config['PATH'] = 'F:/Projects/Celestia/Celestia/MusiCafe/UI Side/src/assets/images'
+app.config['PATH'] = 'E:/projects/celestia/Celestia/MusiCafe/UI Side/src/assets/images'
 
 @app.route('/add-item', methods = ['POST'])
 def add_item():
@@ -32,7 +32,7 @@ def add_item():
     extension = image.filename.split(".")[-1]
     filename = item_name + '.' + extension
     filename = secure_filename(filename)
-    path = 'F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/' + category_name.lower() + '/'
+    path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + category_name.lower() + '/'
     image.save(os.path.join(path,filename))
     path = category_name.lower() + '/' + filename
     
@@ -42,7 +42,7 @@ def add_item():
 @app.route('/images/<directory>/<image_name>')
 def display_image(directory,image_name):
     print(image_name)
-    return send_from_directory('F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
+    return send_from_directory('E:/projects/celestia/Celestia/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
 
 if __name__ == "__main__":
     app.run(debug=True)

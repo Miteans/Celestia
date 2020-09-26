@@ -38,8 +38,8 @@ export class MenuComponent implements OnInit {
     let popUpHeight = ""
     let popUpData = [section,this.selected_item,item]
     if(section == 'edit-item'){
-      popUpWidth = "210px";
-      popUpHeight = "510px";
+      popUpWidth = "720px";
+      popUpHeight = "450px";
     }
     else if(section == 'delete-item'){
       popUpWidth = "400px";
