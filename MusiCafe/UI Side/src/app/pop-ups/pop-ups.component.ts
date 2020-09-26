@@ -12,6 +12,7 @@ export class PopUpsComponent implements OnInit {
 
   selected_item:any;
   add_item: FormGroup;
+  edit_item: FormGroup;
   categories:any;
   message: string;
   imagePath: any;
@@ -19,6 +20,9 @@ export class PopUpsComponent implements OnInit {
   default_category: any;
   filename: File;
   category_name: any;
+  item_details: any;
+  item_name: any;
+  item_price: any;
   constructor(public dialogRef: MatDialogRef<PopUpsComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private menuService:MenuService,
@@ -34,6 +38,13 @@ export class PopUpsComponent implements OnInit {
   ngOnInit(): void {
     this.selected_item = this.data.comp[0];
     this.get_data();
+    this.get_selected_item_details(this.data.comp);
+    this.edit_item = this.fb.group({
+      name : [this.item_name, Validators.required],
+      category : [this.data.comp[1], Validators.required],
+      price : [this.item_price, Validators.required],
+      image : ['']
+    });
   }
 
   get_data(){
@@ -79,4 +90,28 @@ export class PopUpsComponent implements OnInit {
       })
   }
 
+  //edit functions
+  get_selected_item_details(item){
+    console.log("my func",item)
+    this.item_details = item[2]
+    this.item_name = this.item_details['item_name']
+    this.item_price = this.item_details['item_price']
+  }
+
+  edit(){
+    for (let category of this.categories){
+      if(category.category_name == this.add_item.value.category){
+          this.category_name = this.add_item.value.category
+          this.add_item.value.category = category.category_id
+          // this.add_item.value.image = this.filename
+      }
+    }
+    this.menuService.edit_an_item(this.add_item.value.name,this.add_item.value.category,
+      this.add_item.value.price,this.add_item.value.image,this.category_name).subscribe(result=>{
+        console.log("uploaded");
+        var child = document.createElement('edit_msg')
+        child.innerHTML = "Item Updated Successfully"
+        document.getElementById('message').appendChild(child)
+      })
+  }
 }

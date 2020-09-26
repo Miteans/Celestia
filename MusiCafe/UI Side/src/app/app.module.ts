@@ -30,6 +30,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuService } from  './services/menu.service';
 import { PopUpsComponent } from './pop-ups/pop-ups.component';
 import { CartComponent } from './cart/cart.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CartComponent } from './cart/cart.component';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
+    HomeComponent,
     PopUpsComponent,
     CartComponent,
     

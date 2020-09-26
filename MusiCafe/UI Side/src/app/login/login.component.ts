@@ -10,19 +10,15 @@ export class LoginComponent implements OnInit {
 
   username:string;
   password:string;
-  flag = false;
+
   constructor(private route:Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   login_validate(){
     if(this.username == 'admin' && this.password == '12345678'){
-      this.route.navigate(["/cafe"]);
+      this.route.navigate(["/home"]);
     }
   }
-  next_page(){
-    this.flag = true;
-  }
-  
 
 }

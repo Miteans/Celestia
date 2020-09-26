@@ -30,4 +30,16 @@ export class MenuService {
     formData.append('image',image,image.name)
     return this.http.post(url,formData)
   }
+
+  edit_an_item(item_name,categoryId,price,image,categoryName): Observable<any>{
+    let url = `${this.baseurl}edit-item`;
+    const formData: FormData = new FormData();
+    formData.append('name',JSON.stringify(item_name));
+    formData.append('category_id',JSON.stringify(categoryId));
+    formData.append('category_name',JSON.stringify(categoryName))
+    formData.append('price',JSON.stringify(price));
+    // formData.append('image',image,image.name)
+    return this.http.post(url,formData)
+  }
+
 }
