@@ -5,3 +5,10 @@
 .submit{
     margin-left:85% !important;
 }
+
+button{
+    background-color:#B06407;
+    outline: none;
+    margin-right: 20px;
+    float: right;
+}

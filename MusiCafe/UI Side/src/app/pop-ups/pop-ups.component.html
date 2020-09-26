@@ -48,8 +48,17 @@
 </div>
 <!--Add Item Section ends here-->
 
+<!--Delete section begins here-->
+<div *ngIf = "this.selected_item == 'delete-item'">
+    <h2 mat-dialog-title class="heading">
+        Are you sure you want to delete this item?<i class="fa fa-close close" mat-dialog-close></i>
+    </h2>
+    <button mat-raised-button mat-dialog-close>No</button>
+    <button mat-raised-button>Yes</button>
+</div>
 
-<div *ngIf = "this.selected_item != 'add-item'">
+
+<div *ngIf = "this.selected_item != 'add-item'&&this.selected_item != 'delete-item'">
     <h2 mat-dialog-title class="heading">
         Works<i class="fa fa-close close" mat-dialog-close></i>
     </h2>

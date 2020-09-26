@@ -42,8 +42,8 @@ export class MenuComponent implements OnInit {
       popUpHeight = "510px";
     }
     else if(section == 'delete-item'){
-      popUpWidth = "400px";
-      popUpHeight = "150px";
+      popUpWidth = "600px";
+      popUpHeight = "140px";
     }
     else{
       popUpWidth = "720px";
