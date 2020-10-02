@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit {
     this.items = [];
     this.selected_item = data;
     this.menuService.get_items_details(this.selected_item).subscribe(data=>{
+      console.log(data)
       this.items = data['items'][0]['Categories']['items']
     })
     

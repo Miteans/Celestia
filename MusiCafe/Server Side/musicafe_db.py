@@ -1,13 +1,18 @@
 from pymongo import MongoClient
 from pprint import pprint
+import datetime
 
-# db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/cafedb?retryWrites=true&w=majority")
-# mydb = db.cafedb
+db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/cafedb?retryWrites=true&w=majority")
+mydb = db.cafedb
 
-db = MongoClient('localhost',27017)
-mydb = db['musicafe']
+#db = MongoClient('localhost',27017)
+#mydb = db['musicafe']
+
+x = datetime.datetime.now()
+date = x.strftime("%d/%m/%Y")
 
 items= mydb['Items']
+orders=mydb['orders']
 
 def get_items_info(category_name):
     item = []
@@ -66,3 +71,32 @@ def add_item(item_name,category_id,price,path):
         isAdded.append(record)
     
     return isAdded
+
+def add_to_cart():
+    cart_info = []
+    cart_item = orders.insertOne(
+    {
+            "order_id": "or_6", 
+            "order_date": "", 
+            "ordered_items": [
+            { 
+              "item_id":"cf1", 
+              "item_name": "espresso", 
+              "price": 125, "quantity":2, 
+              "total_price":250
+            },
+            {
+                "item_id":"cf2", 
+                "item_name": "americano", 
+                "price": 150, 
+                "quantity":1, 
+                "total_price":150
+            }],
+            "grand_total":400 
+        }
+    )
+
+
+    for order in cart_item:
+        cart_info.append(order)
+    return cart_info

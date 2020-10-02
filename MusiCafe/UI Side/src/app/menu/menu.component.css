@@ -1,6 +1,6 @@
 .left-nav{
     background-color: #A47B1B;
-    height:85vh !important;
+    height:86vh !important;
     width: 210px !important;
   }
 
@@ -42,7 +42,7 @@ mat-card{
 
 .scroll{
     margin-top:15px !important;
-    height: 78vh !important;
+    height: 80vh !important;
     overflow-y:auto !important;
   }
 

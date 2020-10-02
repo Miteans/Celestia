@@ -42,4 +42,10 @@ export class MenuService {
     return this.http.post(url,formData)
   }
 
+  get_cart_items(cart_items):Observable<any>{
+    let url = `${this.baseurl}add-to-cart`;
+    console.log(cart_items)
+    return this.http.post(url,cart_items)
+  }
+
 }

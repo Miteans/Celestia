@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
   }
 
   set_order(){
-    console.log(this.cart_items)
+    this.menuService.get_cart_items(this.cart_items).subscribe(data=>{})
   }
 
 }
