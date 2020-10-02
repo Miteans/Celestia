@@ -7,9 +7,12 @@ mydb = db.cafedb
 
 #db = MongoClient('localhost',27017)
 #mydb = db['musicafe']
+<<<<<<< HEAD
 
 x = datetime.datetime.now()
 date = x.strftime("%d/%m/%Y")
+=======
+>>>>>>> 81e61ccb2732927ff6768b1f53a2b1059775c726
 
 items= mydb['Items']
 orders=mydb['orders']
