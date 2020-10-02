@@ -1,101 +1,109 @@
 <mat-tab-group mat-stretch-tabs (selectedTabChange)="onTabClick($event)">
-    <div *ngFor = "let category of categories" >
-        <mat-tab label="{{category.category_name}}" ></mat-tab>
-    </div> 
+  <div *ngFor = "let category of categories" >
+      <mat-tab label="{{category.category_name}}" ></mat-tab>
+  </div> 
 </mat-tab-group>
 
 <div class="row">
 <div class="col-md-6  menu-display">
-    <div class = "row" *ngIf = "items">
-      <mat-card *ngFor="let item of items">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{item.item_name | titlecase}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src = "http://localhost:5000/images/{{item.item_image}}" alt="item.item_name">
-        <mat-card-content>
-          <p class="text-left"><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-        <div class="card-buttons">
-          <button mat-button class="text-primary" (click) = "add_to_cart(item); calc_total()"><i class="fa fa-shopping-cart"></i>
-            Add to Cart</button>
-        </div>
-      </mat-card>
-    </div>
+  <div class = "row" *ngIf = "items">
+    <mat-card *ngFor="let item of items">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{item.item_name | titlecase}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src = "http://localhost:5000/images/{{item.item_image}}" alt="item.item_name">
+      <mat-card-content>
+        <p class="text-left"><b>Price : {{item.item_price}}/-</b></p>
+      </mat-card-content>
+      <div class="card-buttons">
+        <button mat-button class="text-primary" (click) = "add_to_cart(item); calc_total()"><i class="fa fa-shopping-cart"></i>
+          Add to Cart</button>
+      </div>
+    </mat-card>
   </div>
+</div>
 
-  <div class="col-md-6">
-    <table mat-table [dataSource]="dataSource" class ="mat-elevation-z8" id = "table_head">
-    <!-- Position Column -->
-    <ng-container matColumnDef="item_name">
-      <th mat-header-cell *matHeaderCellDef> Item Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.item_name}} </td>
-    </ng-container>
+<div class="col-md-6" cellspacing = "15">
+  <table mat-table [dataSource]="dataSource" class ="mat-elevation-z8" id = "table_head">
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="item_price">
-      <th mat-header-cell *matHeaderCellDef> Item Price </th>
-      <td mat-cell *matCellDef="let element" class = "right"> {{(element.item_price)}} </td>
-    </ng-container>
+  <!-- Item Name Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+  </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="item_qty">
-      <th mat-header-cell *matHeaderCellDef> Item Qty </th>
-      <td mat-cell *matCellDef="let element" class = "right"> <input  type ="number" (change) = "calc_total()" [(ngModel)]="element.item_qty" type="number"min = "1" />  </td>
-    </ng-container>
+  <!-- Item Name Column -->
+  <ng-container matColumnDef="item_name">
+    <th mat-header-cell *matHeaderCellDef> Item Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.item_name}} </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="tot_price">
-      <th mat-header-cell *matHeaderCellDef> Total Price</th>
-      <td mat-cell *matCellDef="let element" class = "right"> {{(element.item_qty * element.item_price).toFixed(2)}} </td>
-    </ng-container>
+  <!-- Item Price Column -->
+  <ng-container matColumnDef="item_price">
+    <th mat-header-cell *matHeaderCellDef> Item Price </th>
+    <td mat-cell *matCellDef="let element" class = "right"> {{(element.item_price).toFixed(2)}} </td>
+  </ng-container>
 
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef>Remove</th>
-      <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click) = "remove_an_item(element); "><i class="fa fa-times-circle fa-2x"></i></button> </td>
-    </ng-container>
+  <!-- Quantity Column -->
+  <ng-container matColumnDef="item_qty">
+    <th mat-header-cell *matHeaderCellDef> Item Qty </th>
+    <td mat-cell *matCellDef="let element" class = "right"> <input  type ="number" (change) = "calc_total()" [(ngModel)]="element.item_qty" type="number"min = "1" />  </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-    <p id = "grand_total"></p>
-    <div class = "cart-buttons">
-      <button class = "cancel-button" mat-raised-button color ="accent" data-toggle="modal" data-target="#exampleModal1" title="Cancel Order" >Cancel</button>
-      <button class = "done-button" mat-raised-button color ="primary" data-toggle="modal" data-target="#exampleModal2" title="Finalise Order" >Done</button>
-    </div>
+  <!-- Price Per Item Column -->
+  <ng-container matColumnDef="tot_price">
+    <th mat-header-cell *matHeaderCellDef> Total Price</th>
+    <td mat-cell *matCellDef="let element" class = "right"> {{(element.item_qty * element.item_price).toFixed(2)}} </td>
+  </ng-container>
+
+  <!-- Remove Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Remove</th>
+    <td mat-cell *matCellDef="let element"> <button mat-button color="warn" (click) = "remove_an_item(element); calc_total();"><i class="fa fa-times-circle fa-2x"></i></button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+  <p id = "grand_total" *ngIf = "grand_total > 0">{{grand_total.toFixed(2)}}</p>
+  <div class = "cart-buttons" *ngIf = "grand_total > 0">
+    <button class = "cancel-button" mat-raised-button color ="accent" data-toggle="modal" data-target="#exampleModal1" title="Cancel Order" >Cancel</button>
+    <button class = "done-button" mat-raised-button color ="primary" data-toggle="modal" data-target="#exampleModal2" title="Finalise Order" >Done</button>
   </div>
+</div>
 </div>
 
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p>Do you really want to cancel the order</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" (click) = "cancel_order()" data-dismiss="modal">Yes</button>
-      </div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p>Do you really want to cancel the order</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      <button type="button" class="btn btn-primary" (click) = "cancel_order()" data-dismiss="modal">Yes</button>
     </div>
   </div>
 </div>
+</div>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p>Do you really want to Finalise the order</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" (click) = "set_order()" data-dismiss="modal">Yes</button>
-      </div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p>Do you really want to Finalise the order</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      <button type="button" class="btn btn-primary" (click) = "set_order()" data-dismiss="modal">Yes</button>
     </div>
   </div>
+</div>
 </div>

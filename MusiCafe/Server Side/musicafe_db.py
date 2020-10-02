@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 from pprint import pprint
 
-# db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/cafedb?retryWrites=true&w=majority")
-# mydb = db.cafedb
+db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/cafedb?retryWrites=true&w=majority")
+mydb = db.cafedb
 
-db = MongoClient('localhost',27017)
-mydb = db['musicafe']
+#db = MongoClient('localhost',27017)
+#mydb = db['musicafe']
 
 items= mydb['Items']
 

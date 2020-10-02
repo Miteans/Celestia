@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.get_categories();
     this.dataSource = new MatTableDataSource(this.cart_items);
-    this.displayedColumns = ['item_name','item_price', 'item_qty', 'tot_price', 'edit'];
+    this.displayedColumns = ['position','item_name','item_price', 'item_qty', 'tot_price', 'edit'];
   }
 
   onTabClick(event){
@@ -78,8 +78,7 @@ export class CartComponent implements OnInit {
     this.cart_items.forEach(element=>{
       this.grand_total += element.item_price * element.item_qty;
     })
-    document.getElementById('grand_total').innerHTML = "Grand Total : " + String(this.grand_total)
-    return this.grand_total
+    
   }
 
   cancel_order(){
