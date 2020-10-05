@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MenuService } from '../services/menu.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-pop-ups',
@@ -114,4 +115,15 @@ export class PopUpsComponent implements OnInit {
         document.getElementById('message').appendChild(child)
       })
   }
+  delete(){
+    console.log(this.selected_item)
+    console.log(this.item_details)
+    this.menuService.delete_an_item(this.item_details).subscribe(result=>{
+    console.log(result.isDeleted)
+    if(result.isDeleted==true)
+      window.alert("Item Deleted Successfully");
+    else
+      window.alert("Sorry the item couldn't be deleted");
+    })
+  }  
 }

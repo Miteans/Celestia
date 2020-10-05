@@ -42,6 +42,14 @@ export class MenuService {
     return this.http.post(url,formData)
   }
 
+  delete_an_item(item): Observable<any>{
+      console.log(item)
+      console.log(item.item_id)
+      let data={"item_id":item.item_id,"item_image":item.item_image.replace("/","-")}
+      let data1=JSON.stringify(data);
+      let url = `${this.baseurl}delete-item/${data1}`
+      return this.http.delete(url);
+    }
   get_cart_items(cart_items):Observable<any>{
     let url = `${this.baseurl}add-to-cart`;
     console.log(cart_items)

@@ -4,11 +4,26 @@
 
 .submit{
     margin-left:85% !important;
+    margin-top: 4%;
 }
 
 button{
     background-color:#B06407;
+    color:white;
     outline: none;
     margin-right: 20px;
     float: right;
+}
+
+.img_input{
+    margin-top:5%;
+}
+
+.inputs{
+    padding-bottom: 10%;
+}
+
+.heading1{
+    margin-left: 8.5%;
+    height: 50px;
 }

@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit {
       popUpHeight = "140px";
     }
     else{
-      popUpWidth = "720px";
+      popUpWidth = "750px";
       popUpHeight = "450px";
     }
     
