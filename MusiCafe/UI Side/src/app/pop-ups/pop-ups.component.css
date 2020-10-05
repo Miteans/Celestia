@@ -4,7 +4,7 @@
 
 .submit{
     margin-left:85% !important;
-    margin-top: 4%;
+    margin-top: 3%;
 }
 
 button{
@@ -15,10 +15,6 @@ button{
     float: right;
 }
 
-.img_input{
-    margin-top:5%;
-}
-
 .inputs{
     padding-bottom: 10%;
 }
@@ -27,3 +23,14 @@ button{
     margin-left: 8.5%;
     height: 50px;
 }
+
+.choose::-webkit-file-upload-button {
+    margin-top:5%;
+    outline:none;
+    border:2px solid black;
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }

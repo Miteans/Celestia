@@ -47,8 +47,8 @@ export class MenuComponent implements OnInit {
       popUpHeight = "140px";
     }
     else{
-      popUpWidth = "750px";
-      popUpHeight = "450px";
+      popUpWidth = "730px";
+      popUpHeight = "410px";
     }
     
     const popUp = this.dialogRef.open(PopUpsComponent, {

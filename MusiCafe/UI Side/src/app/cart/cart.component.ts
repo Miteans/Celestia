@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cart_items = [];
   grand_total = 0;
   dataSource: any;
+  bill:boolean=false;
   displayedColumns: string[];
 
   constructor(private menuService:MenuService) { }
@@ -77,6 +78,7 @@ export class CartComponent implements OnInit {
     this.grand_total = 0
     this.cart_items.forEach(element=>{
       this.grand_total += element.item_price * element.item_qty;
+      
     })
     
   }
@@ -89,6 +91,9 @@ export class CartComponent implements OnInit {
   }
 
   set_order(){
+    this.bill=true;
+    console.log(this.cart_items)
+    console.log(this.grand_total)
     this.menuService.get_cart_items(this.cart_items).subscribe(data=>{})
   }
 
