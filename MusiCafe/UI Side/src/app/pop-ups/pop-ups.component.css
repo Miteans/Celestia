@@ -12,3 +12,8 @@ button{
     margin-right: 20px;
     float: right;
 }
+
+#message, #warning{
+    margin-left:75px !important;
+    width:fit-content;
+}

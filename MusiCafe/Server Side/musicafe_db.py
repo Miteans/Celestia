@@ -7,12 +7,9 @@ mydb = db.cafedb
 
 #db = MongoClient('localhost',27017)
 #mydb = db['musicafe']
-<<<<<<< HEAD
 
 x = datetime.datetime.now()
 date = x.strftime("%d/%m/%Y")
-=======
->>>>>>> 81e61ccb2732927ff6768b1f53a2b1059775c726
 
 items= mydb['Items']
 orders=mydb['orders']
@@ -68,10 +65,12 @@ def add_item(item_name,category_id,price,path):
             "item_price":int(price),"item_image":path}}
         }
     )
-
-    isAdded = []
-    for record in success:
-        isAdded.append(record)
+    
+    if success['nModified']:
+        isAdded = success['nModified']
+    else:
+        isAdded = False
+   
     
     return isAdded
 

@@ -1,10 +1,11 @@
 img{
-    height:100%;
-    width:100%
+    height:max-content;
+    width:100%;
+
 }
 .cont {
     padding:20px;
-    background-color: rgb(252, 231, 161);
+    background-color: transparent;
     width:500px;
     height:300px;
     position: absolute;

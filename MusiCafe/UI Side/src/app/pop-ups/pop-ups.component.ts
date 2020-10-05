@@ -83,10 +83,15 @@ export class PopUpsComponent implements OnInit {
     }
     this.menuService.add_an_item(this.add_item.value.name,this.add_item.value.category,
       this.add_item.value.price,this.add_item.value.image,this.category_name).subscribe(result=>{
-        console.log("uploaded");
         var child = document.createElement('add_msg')
-        child.innerHTML = "Item Added Successfully"
-        document.getElementById('message').appendChild(child)
+        if(result['isAdded']){
+          child.innerHTML = "Item Added Successfully"
+          document.getElementById('message').appendChild(child)
+        }
+        else{
+          child.innerHTML = "Item not Added Successfully"
+          document.getElementById('warning').appendChild(child)
+        }
       })
   }
 
