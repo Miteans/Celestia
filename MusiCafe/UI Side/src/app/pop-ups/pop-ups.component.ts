@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MenuService } from '../services/menu.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-pop-ups',
@@ -23,6 +24,8 @@ export class PopUpsComponent implements OnInit {
   item_details: any;
   item_name: any;
   item_price: any;
+  warning: string;
+  success: string;
   constructor(public dialogRef: MatDialogRef<PopUpsComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private menuService:MenuService,
@@ -83,16 +86,15 @@ export class PopUpsComponent implements OnInit {
     }
     this.menuService.add_an_item(this.add_item.value.name,this.add_item.value.category,
       this.add_item.value.price,this.add_item.value.image,this.category_name).subscribe(result=>{
-        var child = document.createElement('add_msg')
         if(result['isAdded']){
-          child.innerHTML = "Item Added Successfully"
-          document.getElementById('message').appendChild(child)
+          this.success = "Item Added Successfully"
         }
         else{
-          child.innerHTML = "Item not Added Successfully"
-          document.getElementById('warning').appendChild(child)
+         this.warning = "Sorry there was a problem when adding the item please try again .."
         }
       })
+    this.add_item.reset();
+    this.add_item.value.category = this.data.comp[1];
   }
 
   //edit functions
@@ -119,4 +121,25 @@ export class PopUpsComponent implements OnInit {
         document.getElementById('message').appendChild(child)
       })
   }
+
+  clear_message(){
+    this.warning = this.success = "";
+  }
+
+  delete_item()
+  {
+    console.log(this.selected_item)
+    console.log(this.item_details)
+    this.menuService.delete_an_item(this.item_details).subscribe(result=>{
+      console.log(result.isDeleted)
+      if(result.isDeleted==true){
+        window.alert("Item Deleted Successfully");
+      }
+      else
+      {
+        window.alert("Sorry the item couldn't be deleted");
+      }
+    })
+  }  
+  
 }

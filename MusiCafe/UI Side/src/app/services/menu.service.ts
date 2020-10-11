@@ -42,10 +42,25 @@ export class MenuService {
     return this.http.post(url,formData)
   }
 
-  get_cart_items(cart_items):Observable<any>{
+  delete_an_item(item): Observable<any>{
+      console.log(item)
+      console.log(item.item_id)
+      let data={"item_id":item.item_id,"item_image":item.item_image.replace("/","-")}
+      let data1=JSON.stringify(data);
+      let url = `${this.baseurl}delete-item/${data1}`
+      return this.http.delete(url);
+  }
+
+  add_cart_items(cart_items,total,date){
     let url = `${this.baseurl}add-to-cart`;
     console.log(cart_items)
-    return this.http.post(url,cart_items)
+    let data = {"cart_items":cart_items, "grand_total":total, "order_date":date}
+    return this.http.post<any>(url,data);
+  }
+
+  get_item_sales_details(daymode,category):Observable<any>{
+    let url = `${this.baseurl}item-sales/${daymode}/${category}`;
+    return this.http.get(url)
   }
 
 }

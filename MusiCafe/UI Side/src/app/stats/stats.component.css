@@ -1,0 +1,29 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px 175px;
+  }
+
+  .selection{
+    margin-left:35px;
+    margin-top:25px;
+  }
+
+  .spacing{
+    margin-left: 35px !important;
+  }
+
+  .submit-button{
+    width:fit-content;
+    height:fit-content;
+    margin-top:10px !important;
+  }
+
+  .title{
+    margin-left:100px;
+    font-size:17px;
+  }

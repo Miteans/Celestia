@@ -1,0 +1,47 @@
+<app-header></app-header>
+<mat-tab-group mat-stretch-tabs (selectedTabChange)="onTabClick($event)">
+    <mat-tab label = "Item Sales" ></mat-tab>
+    <mat-tab label = "Profit and Loss"></mat-tab>
+</mat-tab-group>
+
+<div class = "row selection" *ngIf = "categories">
+    <div class = "col-md-8">
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select class="inputMaterial" aria-setsize="4" [(ngModel)] = "selected_category">
+            <div *ngFor="let category of categories">
+                <mat-option [value]="category.category_name">
+                    {{category.category_name}}</mat-option>
+            </div>
+            <mat-option value = "All">All</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click) = "onSubmit()" class = "spacing submit-button">Submit</button>
+
+    <mat-radio-group aria-labelledby="spacing example-radio-group-label" class="example-radio-group" [(ngModel)] = "day_mode">
+        <mat-radio-button class="example-radio-button" value ="daily">Daily</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value ="weekly">Weekly</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value ="monthly">Monthly</mat-radio-button>
+    </mat-radio-group>
+
+    <div *ngIf = "showGraph">
+      <p class = "title"><b>Overall Sales of {{selected_category}}s</b></p>
+      <google-chart [data] = "item_sales_chartdata"></google-chart>
+    </div>
+  </div>
+
+  <div class = "col-md-4 popular-dishes">
+      <div class = "dish" *ngFor = "let item of popular_items">
+        <mat-card class="col-md-3 example-card" role="button">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title class="text-center">{{item.item_name | titlecase}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src = "http://localhost:5000/images/{{item.item_image}}" alt="{{item.item_name}}">
+            <mat-card-content>
+              <p class="text-left"><b>Price : {{item.item_price}}/-</b></p>
+            </mat-card-content>
+        </mat-card>
+      </div>
+  </div>

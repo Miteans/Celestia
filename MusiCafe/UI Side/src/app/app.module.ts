@@ -18,6 +18,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,10 @@ import { MenuService } from  './services/menu.service';
 import { PopUpsComponent } from './pop-ups/pop-ups.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { StatsComponent } from './stats/stats.component';
+
+import { Ng2GoogleChartsModule } from 'ng2-google-charts'
 
 @NgModule({
   declarations: [
@@ -42,6 +47,8 @@ import { HomeComponent } from './home/home.component';
     HomeComponent,
     PopUpsComponent,
     CartComponent,
+    SidenavComponent,
+    StatsComponent,
     
   ],
   imports: [
@@ -63,7 +70,10 @@ import { HomeComponent } from './home/home.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule,
+
+    Ng2GoogleChartsModule
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]

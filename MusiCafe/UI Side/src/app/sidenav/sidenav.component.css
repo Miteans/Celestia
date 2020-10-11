@@ -1,0 +1,17 @@
+.left-nav{
+    background-color: #A47B1B;
+    height:86vh !important;
+    width: 210px !important;
+  }
+
+mat-expansion-panel{
+    border:none !important;
+    box-shadow:none !important;
+    border-radius:0px !important;
+  }
+
+  
+  .brown-text{
+    color:purple !important;
+    font-weight:500 !important;
+  }

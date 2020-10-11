@@ -4,10 +4,12 @@
 
 .submit{
     margin-left:85% !important;
+    margin-top: 3%;
 }
 
 button{
     background-color:#B06407;
+    color:white;
     outline: none;
     margin-right: 20px;
     float: right;
@@ -17,3 +19,22 @@ button{
     margin-left:75px !important;
     width:fit-content;
 }
+.inputs{
+    padding-bottom: 10%;
+}
+
+.heading1{
+    margin-left: 8.5%;
+    height: 50px;
+}
+
+.choose::-webkit-file-upload-button {
+    margin-top:5%;
+    outline:none;
+    border:2px solid black;
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }

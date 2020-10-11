@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../services/menu.service';
-import { element } from 'protractor';
 import { MatTableDataSource } from '@angular/material/table';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +14,10 @@ export class CartComponent implements OnInit {
   cart_items = [];
   grand_total = 0;
   dataSource: any;
+  bill:boolean=false;
   displayedColumns: string[];
+  dateFormat: string;
+  selected_category: any;
 
   constructor(private menuService:MenuService) { }
 
@@ -25,8 +28,8 @@ export class CartComponent implements OnInit {
   }
 
   onTabClick(event){
-    let category = event['tab']['textLabel']
-    this.pass_data(category)
+    this.selected_category = event['tab']['textLabel']
+    this.pass_data(this.selected_category)
   }
 
   get_categories(){
@@ -58,6 +61,7 @@ export class CartComponent implements OnInit {
     }   
     if(!flag){
       item.item_qty = 1
+      item.category = this.selected_category
       this.cart_items.push(item)
     }  
 
@@ -77,6 +81,7 @@ export class CartComponent implements OnInit {
     this.grand_total = 0
     this.cart_items.forEach(element=>{
       this.grand_total += element.item_price * element.item_qty;
+      
     })
     
   }
@@ -89,7 +94,16 @@ export class CartComponent implements OnInit {
   }
 
   set_order(){
-    this.menuService.get_cart_items(this.cart_items).subscribe(data=>{})
+    this.bill=true;
+    console.log(this.cart_items)
+    console.log(this.grand_total)
+    let now = new Date();
+    this.dateFormat = formatDate(now, 'dd-MM-yyyy hh:mm:ss a', 'en-IND', '+0530');
+    console.log(this.dateFormat);
+    this.menuService.add_cart_items(this.cart_items,this.grand_total,this.dateFormat).subscribe(data=>{
+      this.cart_items = [];
+      this.dataSource = new MatTableDataSource(this.cart_items)
+    })
   }
 
 }
