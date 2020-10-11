@@ -4,7 +4,7 @@ mat-card{
   width:300px !important;
 }
 
-img{
+.img1{
   height:150px !important;
 }
 
@@ -36,6 +36,7 @@ mat-card-title{
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
 
 .card-buttons{
   width:50px !important;
@@ -75,7 +76,7 @@ button{
   margin-left:20px;
 }
 
-table th{
+.table1{
   background-color: rgb(167, 103, 7) !important;
   color:gainsboro;
   font-size:1em !important;
@@ -99,4 +100,69 @@ input[type=number]::-webkit-outer-spin-button {
 
  opacity: 1;
 
+}
+
+.padding {
+  padding: 2rem !important
+}
+
+.card {
+  margin-bottom: 30px;
+  border: 1px solid black;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6f2;
+  display:inline;
+  height: 120px;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding-top: 20px;
+}
+.right_side {
+  padding-right: 65px;
+}
+
+.left_side {
+  padding-left: 90px;
+}
+h3{
+  float: right;
+  padding-left: 180px;
+}
+
+h2{
+  text-align: center;
+}
+.heading{
+  text-align: center;
+  padding-left: 150px;
+}
+.card-footer{
+  height:50px;
+}
+
+.fixed_header{
+  width: 800px;
+  text-align: center;
+}
+
+.fixed_header tbody{
+display:block;
+width: 100%;
+overflow: auto;
+height: 100px;
+}
+
+.fixed_header thead tr {
+ display: block;
+}
+
+.fixed_header th, .fixed_header td {
+padding: 6px;
+width: 200px;
 }

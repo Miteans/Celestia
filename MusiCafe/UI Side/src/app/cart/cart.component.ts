@@ -13,24 +13,28 @@ export class CartComponent implements OnInit {
   items: any[];
   cart_items = [];
   grand_total = 0;
+  date:string;
   dataSource: any;
-  bill:boolean=false;
+  bill:boolean;
   displayedColumns: string[];
 
   constructor(private menuService:MenuService) { }
 
   ngOnInit(): void {
+    this.bill=false;
     this.get_categories();
     this.dataSource = new MatTableDataSource(this.cart_items);
     this.displayedColumns = ['position','item_name','item_price', 'item_qty', 'tot_price', 'edit'];
   }
 
   onTabClick(event){
+    this.bill=false;
     let category = event['tab']['textLabel']
     this.pass_data(category)
   }
 
   get_categories(){
+    this.bill=false;
     this.menuService.get_categories().subscribe(data=>{
       this.categories = data['categories']['categories']
     })
@@ -38,6 +42,7 @@ export class CartComponent implements OnInit {
 
   pass_data(data)
   {
+    this.bill=false;
     this.items = [];
     this.menuService.get_items_details(data).subscribe(data=>{
       this.items = data['items'][0]['Categories']['items']
@@ -47,6 +52,7 @@ export class CartComponent implements OnInit {
 
   add_to_cart(item){
     let flag = false
+    this.bill=false;
     if(this.cart_items.length > 0)
     {
       this.cart_items.forEach(element=>{
@@ -67,6 +73,7 @@ export class CartComponent implements OnInit {
   }
 
   remove_an_item(item){
+    this.bill=false;
     const index = this.cart_items.indexOf(item, 0);
     if (index > -1) {
        this.cart_items.splice(index, 1);
@@ -75,6 +82,7 @@ export class CartComponent implements OnInit {
   }
 
   calc_total(){
+    this.bill=false;
     this.grand_total = 0
     this.cart_items.forEach(element=>{
       this.grand_total += element.item_price * element.item_qty;
@@ -84,6 +92,7 @@ export class CartComponent implements OnInit {
   }
 
   cancel_order(){
+    this.bill=false;
     this.cart_items = []
     this.grand_total = 0
     console.log(this.cart_items)
@@ -91,7 +100,7 @@ export class CartComponent implements OnInit {
   }
 
   set_order(){
-    this.bill=true;
+    this.bill=true; 
     console.log(this.cart_items)
     console.log(this.grand_total)
     this.menuService.get_cart_items(this.cart_items).subscribe(data=>{})
