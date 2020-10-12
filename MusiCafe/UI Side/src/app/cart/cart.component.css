@@ -124,11 +124,11 @@ input[type=number]::-webkit-outer-spin-button {
   padding-top: 20px;
 }
 .right_side {
-  padding-right: 65px;
+  padding-right: 75px;
 }
 
 .left_side {
-  padding-left: 90px;
+  padding-left: 110px;
 }
 h3{
   float: right;

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div [hidden]="bill">
   <mat-tab-group mat-stretch-tabs (selectedTabChange)="onTabClick($event)">
     <div *ngFor = "let category of categories" >
@@ -67,7 +68,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-    <p id = "grand_total" *ngIf = "grand_total > 0">{{grand_total.toFixed(2)}}</p>
+    <p id = "grand_total" *ngIf = "grand_total > 0">Grand Total : {{grand_total.toFixed(2)}}</p>
     <div class = "cart-buttons" *ngIf = "grand_total > 0">
       <button class = "cancel-button" mat-raised-button color ="accent" data-toggle="modal" data-target="#exampleModal1" title="Cancel Order" >Cancel</button>
       <button class = "done-button" mat-raised-button color ="primary" data-toggle="modal" data-target="#exampleModal2" title="Finalise Order" >Done</button>
@@ -122,8 +123,8 @@
           <p>723 Complex yzz</p>
           <p>Contact:91-7426358941</p>
         </div>
-        <div>
-          <h3>Date</h3>
+        <div *ngIf="date">
+          <h3>Date : {{date}}</h3>
         </div>
         </div>
         </div>
@@ -168,7 +169,7 @@
           </div>
         </div>
     </div>
-    <button class="float-right" mat-raised-button color="primary" (click)="cancel_order()">OK</button>
+    <button class="float-right" mat-raised-button color="primary" (click)="ok_clicked()">OK</button>
   </div>
 </div>
 

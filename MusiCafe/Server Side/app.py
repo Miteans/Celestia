@@ -22,8 +22,13 @@ def get_categories():
 
 @app.route('/add-to-cart', methods=['POST'])
 def get_cart_items():
-    print(request)
-    return jsonify({'flag:0'})
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}), 400
+    cart = request.json.get('cart_items', None)
+    total = request.json.get('grand_total', None)
+    date =  request.json.get('order_date', None)
+    success = md.add_to_cart(cart,total,date)
+    return jsonify({'addToCart':success})
     
 @app.route('/delete-item/<item>', methods=['DELETE'])
 def delete_an_item(item):
@@ -45,15 +50,15 @@ def delete_an_item(item):
 def add_item():
     image = request.files['image']
     item_name = request.form.get('name').replace('"',"")
-    print(type(request.form.get('name')))
     category_id = request.form.get('category_id').replace('"',"")
     category_name = request.form.get('category_name').replace('"',"")
     price = request.form.get('price').replace('"',"")
     extension = image.filename.split(".")[-1]
     filename = item_name + '.' + extension
     filename = secure_filename(filename)
-    #path = 'F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/' + category_name.lower() + '/'
     path = 'D:/angular/cafe/MusiCafe/Server Side/images/' + category_name.lower() + '/'
+    #path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + category_name.lower() + '/'
+    #path = 'F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/' + category_name.lower() + '/'
     image.save(os.path.join(path,filename))
     path = category_name.lower() + '/' + filename
     
@@ -62,9 +67,15 @@ def add_item():
 
 @app.route('/images/<directory>/<image_name>')
 def display_image(directory,image_name):
-    print(image_name)
-    #return send_from_directory('F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
     return send_from_directory('D:/angular/cafe/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
+    #return send_from_directory('E:/projects/celestia/Celestia/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
+    #return send_from_directory('F:/Projects/Celestia/Celestia/MusiCafe/Server Side/images/'+directory+'/', filename = image_name)
+
+@app.route('/item-sales/<dayMode>/<category>')
+def get_item_sales(dayMode,category):
+    sales = md.get_item_sales(dayMode,category)
+    print(sales)
+    return jsonify({'item-sales':sales})
 
 if __name__ == "__main__":
     app.run(debug=True)

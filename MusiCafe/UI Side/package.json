@@ -1,7 +1,6 @@
 {
   "name": "MusiCafe",
   "version": "0.0.0",
-  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,6 +24,7 @@
     "bootstrap": "^4.5.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
+    "ng2-google-charts": "^6.1.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
