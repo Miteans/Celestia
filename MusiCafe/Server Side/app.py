@@ -74,7 +74,6 @@ def display_image(directory,image_name):
 @app.route('/item-sales/<dayMode>/<category>')
 def get_item_sales(dayMode,category):
     sales = md.get_item_sales(dayMode,category)
-    print(sales)
     return jsonify({'item-sales':sales})
 
 if __name__ == "__main__":

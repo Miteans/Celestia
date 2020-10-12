@@ -112,7 +112,6 @@ export class CartComponent implements OnInit {
     this.date+=this.dateFormat[i];}
     console.log(this.dateFormat);
     this.menuService.add_cart_items(this.cart_items,this.grand_total,this.dateFormat).subscribe(data=>{
-      
     })
   }
 

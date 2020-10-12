@@ -1,16 +1,13 @@
 from pymongo import MongoClient
 from pprint import pprint
-import datetime
+from datetime import datetime, timedelta
+import re
 
 db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/cafedb?retryWrites=true&w=majority")
 mydb = db.cafedb
 
 #db = MongoClient('localhost',27017)
 #mydb = db['musicafe']
-
-x = datetime.datetime.now()
-date = x.strftime("%d-%m-%Y")
-print(type(date))
 
 items= mydb['Items']
 orders=mydb['orders']
@@ -104,8 +101,6 @@ def add_to_cart(cart_items,grand_total,date):
         }
     )
 
-    print(success.inserted_id)
-
     if success.inserted_id:
         flag = True
         print("Here")
@@ -115,18 +110,43 @@ def add_to_cart(cart_items,grand_total,date):
     return flag
 
 def get_item_sales(dayMode,category):
-    item_sales = []
     selected_category = []
-    print(category)
+    dates = []
+    x = datetime.now()
+    today = x.strftime("%d-%m-%Y")
+
     if category != 'All':
         selected_category.append(category)
     else:
         selected = get_categories()
-        print(selected)
         for category in selected['categories']:
-            print(category)
             selected_category.append(category['category_name'])
-            print(selected_category)
+
+    if dayMode == 'daily':
+        query = re.compile(today)
+        dates.append(query)
+    elif dayMode == 'weekly':
+        for i in range(1,8):
+            dd = timedelta(days = i)
+            day = x - dd
+            date = day.strftime("%d-%m-%Y")
+            query = re.compile(date)
+            dates.append(query)
+    else:
+        for i in range(1,31):
+            dd = timedelta(days = i)
+            day = x - dd
+            date = day.strftime("%d-%m-%Y")
+            query = re.compile(date)
+            dates.append(query)
+
+    sales = details_of_item_sales(dates,selected_category)
+    print(sales)
+    return sales
+
+
+def details_of_item_sales(dates,category):
+    item_sales = []
     
     ordered_items = orders.aggregate([
     {
@@ -134,8 +154,8 @@ def get_item_sales(dayMode,category):
     },
     {
         "$match":{
-            "order_date":{ "$regex" : date},
-            "ordered_items.category": { "$in": selected_category}
+            "order_date":{"$in": dates},
+            "ordered_items.category": { "$in": category}
         }
     },
     {
