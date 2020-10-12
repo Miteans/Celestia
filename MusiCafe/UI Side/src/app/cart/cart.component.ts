@@ -101,8 +101,9 @@ export class CartComponent implements OnInit {
     this.dateFormat = formatDate(now, 'dd-MM-yyyy hh:mm:ss a', 'en-IND', '+0530');
     console.log(this.dateFormat);
     this.menuService.add_cart_items(this.cart_items,this.grand_total,this.dateFormat).subscribe(data=>{
-      this.cart_items = [];
+      /*this.cart_items = [];
       this.dataSource = new MatTableDataSource(this.cart_items)
+      this.grand_total = 0*/
     })
   }
 
